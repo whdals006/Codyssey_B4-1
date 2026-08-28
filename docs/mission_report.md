@@ -35,3 +35,44 @@ node_modules/
 * ```.vscode/```
 
     isual Studio Code에서 해당 프로젝트를 열었을 때 적용되는 개인 에디터 설정 폴더
+
+
+# 2. HTML 시맨틱 구조 만들기
+
+## 2-1. 시맨틱 구조
+
+```
+body
+│
+├── header
+│   └── nav
+│
+├── main
+│   ├── section#hero
+│   ├── section#about
+│   ├── section#skills
+│   ├── section#projects
+│   └── section#contact
+│
+└── footer
+```
+
+```
+<body>
+    <header>                    # 사이트 상단 영역
+        <nav>...</nav>          # 사이트 내 이동 메뉴
+    </header>
+
+    <main>                      # 페이지의 핵심 콘텐츠
+        <section>...</section>  # 독립적인 영역
+        <section>...</section>
+        <section>...</section>
+        <section>...</section>
+        <section>...</section>
+    </main>
+
+    <footer>                    # 저작권,SNS 등의 하단 정보
+        ...
+    </footer>
+</body>
+```

@@ -3,14 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>My Portfolio</title>
 
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/main.js" defer></script>
 </head>
+
 <body>
 
-    <h1>My Portfolio</h1>
+    <header>
+        <nav>
+            <a href="#hero" class="logo">My Portfolio</a>
+
+            <button type="button" class="menu-toggle" aria-label="메뉴 열기">
+                ☰
+            </button>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="#about">About</a>
+                </li>
+                <li>
+                    <a href="#skills">Skills</a>
+                </li>
+                <li>
+                    <a href="#projects">Projects</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+
+            <button type="button" class="theme-toggle" aria-label="다크 모드 전환">
+                🌙
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <section id="hero">
+            <div>
+                <p>Hello, I'm</p>
+                <h1>나의 이름</h1>
+                <p>
+                    웹 개발을 공부하고 있는 개발자입니다.
+                </p>
+
+                <a href="#projects">View Projects</a>
+                <a href="#contact">Contact Me</a>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about">
+            <div>
+                <h2>About Me</h2>
+
+                <img
+                    src="./images/profile.jpg"
+                    alt="프로필 사진"
+                >
+
+                <div>
+                    <p>
+                        안녕하세요.
+                        웹 개발을 공부하며 다양한 프로젝트를
+                        만들어가고 있습니다.
+                    </p>
+
+                    <p>
+                        HTML, CSS, JavaScript를 기반으로
+                        웹의 동작 원리를 이해하고 직접 구현하는 것을
+                        목표로 하고 있습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills">
+            <div>
+                <h2>Skills</h2>
+
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>Git</li>
+                    <li>GitHub</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <div>
+                <h2>Projects</h2>
+
+                <div class="project-list">
+                    <article>
+                        <h3>Projects Loading...</h3>
+                        <p>
+                            GitHub에서 프로젝트를 불러오는 중입니다.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="project-status" aria-live="polite">
+                    프로젝트를 불러오는 중...
+                </div>
+
+                <button type="button" class="retry-button">
+                    다시 시도
+                </button>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div>
+                <h2>Contact</h2>
+
+                <form id="contact-form">
+
+                    <div>
+                        <label for="name">이름</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                        >
+                        <p class="error-message" id="name-error"></p>
+                    </div>
+
+                    <div>
+                        <label for="email">이메일</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                        >
+                        <p class="error-message" id="email-error"></p>
+                    </div>
+
+                    <div>
+                        <label for="message">메시지</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            required
+                        ></textarea>
+                        <p class="error-message" id="message-error"></p>
+                    </div>
+
+                    <button type="submit">
+                        Send
+                    </button>
+
+                    <p
+                        class="form-success"
+                        id="form-success"
+                        aria-live="polite"
+                    ></p>
+
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            &copy; 2026 나의 이름. All rights reserved.
+        </p>
+
+        <div>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+                GitHub
+            </a>
+
+            <a href="#" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+            </a>
+        </div>
+    </footer>
 
 </body>
 </html>
