@@ -37,9 +37,9 @@ node_modules/
     isual Studio Code에서 해당 프로젝트를 열었을 때 적용되는 개인 에디터 설정 폴더
 
 
-# 2. HTML 시맨틱 구조 만들기
+## 2. HTML 시맨틱 구조 만들기
 
-## 2-1. 시맨틱 구조
+### 2-1. 시맨틱 구조
 
 ```
 body
@@ -76,3 +76,62 @@ body
     </footer>
 </body>
 ```
+
+
+## 3. CSS 기본 디자인
+
+### 3-1. CSS Variables
+
+* 사이트 전체의 디자인 값을 한곳에서 관린할 수 있다.
+
+```
+:root
+ │
+ ├── primary color
+ ├── background
+ ├── text
+ ├── spacing
+ └── border-radius
+ ```
+
+### 3-2. Reset
+
+### 3-3. Common
+
+* 각 section의 콘텐츠가 화면 전체로 퍼지지 않도록 container를 만든다.
+
+### 3-4. Header / Navigation
+
+* Header 꾸미기
+* Flexbox 사용
+
+### 3-5. 메뉴 버튼과 테마 버튼
+
+### 3-6. Section 공통 스타일
+
+### 3-7. Hero
+
+* clamp() : 화면 크기에 따라 제목 크기를 적절하게 변경해주는 함수
+
+### 3-8. About
+
+* box-shadow 사용
+
+### 3-9. Skills
+
+* hover 사용
+* trasition 사용
+* box-shadow 사용
+
+### 2-10. Projects
+
+* Grid 사용 (auto-fit, minmax로 반응형)
+
+### 2-11. Contact Form
+
+
+### 2-12. Footer
+
+
+### 2-13. Tablet/Desktop 기본 레이아웃
+
