@@ -82,7 +82,7 @@ body
 
 ### 3-1. CSS Variables
 
-* 사이트 전체의 디자인 값을 한곳에서 관린할 수 있다.
+* CSS 변수를 만들어서 사이트 전체의 디자인 값을 한곳에서 관린할 수 있다.
 
 ```
 :root
@@ -107,10 +107,13 @@ body
 
 ### 3-5. 메뉴 버튼과 테마 버튼
 
+* 현재 데스크톱에서는 햄버거 버튼을 숨긴다.
+
 ### 3-6. Section 공통 스타일
 
 ### 3-7. Hero
 
+* Hero는 포트폴리오의 첫인사이기 때문에 중앙 정렬
 * clamp() : 화면 크기에 따라 제목 크기를 적절하게 변경해주는 함수
 
 ### 3-8. About
@@ -126,6 +129,12 @@ body
 ### 2-10. Projects
 
 * Grid 사용 (auto-fit, minmax로 반응형)
+* 핵심 코드
+
+    ```css
+    grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+    ```
 
 ### 2-11. Contact Form
 
@@ -135,3 +144,8 @@ body
 
 ### 2-13. Tablet/Desktop 기본 레이아웃
 
+
+
+## 4. 반응형 웹 + 모바일 네비게이션
+
+### 4-1. 
