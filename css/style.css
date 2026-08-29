@@ -642,3 +642,41 @@ header.scrolled {
     box-shadow:
         0 4px 12px rgba(0, 0, 0, 0.08);
 }
+
+
+/* =========================
+   다크 모드 테마 변수 재정의
+========================= */
+[data-theme="dark"] {
+    --color-primary: #60a5fa;
+    --color-primary-hover: #3b82f6;
+
+    --color-background: #111827;
+    --color-background-secondary: #1f2937; /* 카드나 세컨더리 영역 배경색 */
+
+    --color-text: #f9fafb;
+    --color-text-secondary: #d1d5db;
+
+    --color-border: #374151; /* 어두운 배경에 맞는 테두리 색상 */
+}
+
+
+/* =========================
+   Scroll Animation
+========================= */
+
+.animate-on-scroll {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}

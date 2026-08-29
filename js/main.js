@@ -1,4 +1,3 @@
-// DOM 요소
 const menuToggle = document.querySelector(".menu-toggle");
 const navMenu = document.querySelector(".nav-menu");
 
@@ -11,12 +10,25 @@ const heroLinks = document.querySelectorAll(
 const scrollTopButton = document.querySelector(".scroll-top");
 const header = document.querySelector("header");
 
+const themeToggle = document.querySelector(".theme-toggle");
+
+const animatedElements = document.querySelectorAll(
+    ".animate-on-scroll"
+);
+
+
+// =========================
+// Smooth Scroll
+// =========================
 
 const scrollToSection = (event) => {
     event.preventDefault();
 
-    const targetId = event.currentTarget.getAttribute("href");
-    const targetSection = document.querySelector(targetId);
+    const targetId =
+        event.currentTarget.getAttribute("href");
+
+    const targetSection =
+        document.querySelector(targetId);
 
     if (targetSection) {
         targetSection.scrollIntoView({
@@ -25,6 +37,10 @@ const scrollToSection = (event) => {
     }
 };
 
+
+// =========================
+// Scroll
+// =========================
 
 const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -43,14 +59,63 @@ const handleScroll = () => {
 };
 
 
+// =========================
+// Theme (다크 모드를 변경하는 함수)
+// =========================
 
-// 햄버거 메뉴 클릭 시 메뉴가 열리고 닫히는 토글
+const setTheme = (theme) => {
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+
+    localStorage.setItem("theme", theme);
+
+    if (theme === "dark") {
+        themeToggle.textContent = "☀️";
+        themeToggle.setAttribute(
+            "aria-label",
+            "라이트 모드로 전환"
+        );
+    } else {
+        themeToggle.textContent = "🌙";
+        themeToggle.setAttribute(
+            "aria-label",
+            "다크 모드로 전환"
+        );
+    }
+};
+
+
+// =========================
+// 현재 theme를 확인하는 함수
+// =========================
+
+const getCurrentTheme = () => {
+    return document.documentElement.getAttribute(
+        "data-theme"
+    );
+};
+
+// 저장된 theme 불러오기
+const loadTheme = () => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+        setTheme(savedTheme);
+    }
+};
+
+
+// =========================
+// Events
+// =========================
+
 menuToggle.addEventListener("click", () => {
     navMenu.classList.toggle("active");
 });
 
 
-// 모바일 메뉴 링크 클릭 시 메뉴 닫기
 navLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
         scrollToSection(event);
@@ -59,19 +124,26 @@ navLinks.forEach((link) => {
 });
 
 
-// 부드러운 스크롤
 heroLinks.forEach((link) => {
     link.addEventListener("click", scrollToSection);
 });
 
 
-// 스크롤 이벤트 구현
+// theme 토글 구현
+themeToggle.addEventListener("click", () => {
+    const currentTheme = getCurrentTheme();
+
+    if (currentTheme === "dark") {
+        setTheme("light");
+    } else {
+        setTheme("dark");
+    }
+});
+
+
 window.addEventListener("scroll", handleScroll);
 
-handleScroll();
 
-
-// Scroll Top 클릭하면 맨 위로 이동
 scrollTopButton.addEventListener("click", () => {
     window.scrollTo({
         top: 0,
@@ -79,3 +151,33 @@ scrollTopButton.addEventListener("click", () => {
     });
 });
 
+
+// =========================
+// Intersection Observer
+// =========================
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    },
+    {
+        threshold: 0.2
+    }
+);
+
+
+animatedElements.forEach((element) => {
+    observer.observe(element);
+});
+
+
+// =========================
+// Initial State
+// =========================
+
+loadTheme();
+handleScroll();

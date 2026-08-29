@@ -155,3 +155,38 @@ body
 
 ### 5-1. HTML에 scroll Top 버튼 추가
 
+## 6. 다크 모드 + 상태 유지 + 스크롤 애니메이션
+
+### 6-1. html
+
+```html
+<button
+    type="button"
+    class="theme-toggle"
+    aria-label="다크 모드 전환"
+>
+    🌙
+</button>
+```
+
+### 6-2. css 변수에 추가
+
+```css
+[data-theme="dark"] {
+    --color-background: #111827;
+    --color-text: #f9fafb;
+    --color-text-secondary: #d1d5db;
+    --color-primary: #60a5fa;
+}
+```
+
+### 6-3. main.js 에서 DOM 선택 부분 추가
+
+```javascript
+const themeToggle = document.querySelector(".theme-toggle");
+```
+
+
+### 6-4. 스크롤 애니메이션
+
+* About, Skills, Projects, Contact 에만 적용
