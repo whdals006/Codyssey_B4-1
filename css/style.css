@@ -482,6 +482,12 @@ section h2 {
     color: #16a34a;
 }
 
+#contact input.invalid,
+#contact textarea.invalid {
+    border-color: #dc2626;
+}
+
+
 
 /* =========================
    Footer

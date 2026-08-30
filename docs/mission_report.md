@@ -190,3 +190,23 @@ const themeToggle = document.querySelector(".theme-toggle");
 ### 6-4. 스크롤 애니메이션
 
 * About, Skills, Projects, Contact 에만 적용
+
+
+## 7. Contact 폼 UX + 입력값 검증
+
+### 7-1. 
+
+
+## 8. GitHub API 연동
+
+### 8-1. GitHub API 주소와 데이터 구조 이해
+### 8-2. GitHub API fetch 함수 만들기
+### 8-3. 로딩 / 성공 / 빈 상태 렌더링
+### 8-4. 에러 처리 + 다시 시도 버튼
+### 8-5. map() + 구조분해 할당 + 템플릿 리터럴 적용
+### 8-6. 실제 브라우저에서 API 연동 테스트
+
+
+
+
+## 9. 
