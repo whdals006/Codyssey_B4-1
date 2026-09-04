@@ -550,6 +550,8 @@ footer a:hover {
         background-color: transparent;
 
         border-bottom: none;
+
+        gap: var(--spacing-md); /* 메뉴 항목 사이의 간격을 지정) */
     }
 
     .nav-menu a {
