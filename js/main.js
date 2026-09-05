@@ -24,9 +24,10 @@ const githubUsername = "whdals006"
 const githubApiUrl =
     `https://api.github.com/users/${githubUsername}/repos`;
 
-// =========================
-// Smooth Scroll
-// =========================
+
+/* =================================================
+   Smooth Scroll (페이지 내 부드러운 스크롤 이동 함수)
+================================================= */
 
 const scrollToSection = (event) => {
     event.preventDefault();
@@ -45,9 +46,10 @@ const scrollToSection = (event) => {
 };
 
 
-// =========================
-// Scroll
-// =========================
+/* =========================================================
+   Scroll Dynamic Header & Scroll-Top Button Controller
+   (스크롤 위치에 따른 헤더 및 맨 위로 가기 버튼 상태 제어 함수)
+========================================================= */
 
 const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -66,9 +68,9 @@ const handleScroll = () => {
 };
 
 
-// =========================
-// Theme (다크 모드를 변경하는 함수)
-// =========================
+/* =========================================================
+   Theme Setter (다크/라이트 테마 변경 및 저장 함수)
+========================================================= */
 
 const setTheme = (theme) => {
     document.documentElement.setAttribute(
@@ -94,9 +96,9 @@ const setTheme = (theme) => {
 };
 
 
-// =========================
-// 현재 theme를 확인하는 함수
-// =========================
+/* =========================================================
+   Theme Getter & Loader (현재 테마 조회 및 저장된 테마 로드)
+========================================================= */
 
 const getCurrentTheme = () => {
     return document.documentElement.getAttribute(
@@ -114,9 +116,9 @@ const loadTheme = () => {
 };
 
 
-// =========================
-// Events
-// =========================
+/* =========================================================
+   Event Listeners (사용자 인터랙션 및 시스템 이벤트 연결)
+========================================================= */
 
 menuToggle.addEventListener("click", () => {
     navMenu.classList.toggle("active");
@@ -160,9 +162,9 @@ scrollTopButton.addEventListener("click", () => {
 
 
 
-// =========================
-// Intersection Observer
-// =========================
+/* =========================================================
+   Intersection Observer (스크롤 시 화면 감지 애니메이션 제어)
+========================================================= */
 
 const observer = new IntersectionObserver(
     (entries) => {
@@ -184,9 +186,9 @@ animatedElements.forEach((element) => {
 
 
 
-// =========================
-// Contact 폼 UX + 입력값 검증
-// =========================
+/* =========================================================
+   Form Validation & UX (Contact Form 폼 유효성 검사 및 제출)
+========================================================= */
 
 const contactForm = document.querySelector(
     "#contact-form"
@@ -338,7 +340,12 @@ contactForm.addEventListener(
     }
 );
 
-// 8-2. 
+
+
+/* =========================================================
+   Fetch Projects (GitHub API 비동기 프로젝트 데이터 로딩)
+========================================================= */
+
 const fetchProjects = async () => {
     retryButton.style.display = "none";
 
@@ -371,7 +378,11 @@ const fetchProjects = async () => {
 };
 
 
-//8-3. 로딩 / 성공 / 빈 상태 렌더링
+
+/* =========================================================
+   Render Projects (전달받은 프로젝트 데이터를 HTML로 그려주는 함수)
+========================================================= */
+
 const renderProjects = (projects) => {
     if (projects.length === 0) {
         projectList.innerHTML = "";
@@ -419,13 +430,20 @@ const renderProjects = (projects) => {
         .join("");
 };
 
-// =========================
+
+
+/* =========================================================
+   Retry Button Event Listener (프로젝트 불러오기 재시도)
+========================================================= */
 
 retryButton.addEventListener("click", fetchProjects);
 
-// =========================
-// Initial State
-// =========================
+
+
+/* =========================================================
+   Initial Application State & Execution
+   (웹페이지 로드 시 초기 상태 세팅 및 데이터 요청 함수 실행)
+========================================================= */
 
 loadTheme();
 handleScroll();

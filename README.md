@@ -30,7 +30,13 @@ B4-1/
 
 ---
 
-## 3. 학습 목표
+## 3. GitHub Pages 배포 url
+
+https://whdals006.github.io/Codyssey_B4-1/
+
+---
+
+## 4. 학습 목표
 
 - Semantic HTML
 - CSS Flexbox
@@ -39,9 +45,7 @@ B4-1/
 - DOM 선택 및 조작
 - EventListener
 - 이벤트 처리
-- ES6+ 문법
 - 화살표 함수
-- 구조분해 할당
 - 템플릿 리터럴
 - 배열 map()
 - fetch()
@@ -55,10 +59,10 @@ B4-1/
 
 ---
 
-## 2. 주요 기능
+## 5. 주요 기능
 
 - 반응형 포트폴리오 웹사이트
-- 햄버거 메뉴
+- 모바일 햄버거 메뉴
 - 부드러운 섹션 스크롤
 - Scroll Top 버튼
 - 스크롤에 따른 Navigation 스타일 변경
@@ -73,28 +77,15 @@ B4-1/
 
 ---
 
-## 3. 사용 기술
-
-### Frontend
+## 6. 개발 환경
 
 - HTML5
 - CSS3
 - JavaScript (ES6+)
 
-### API
-
-- GitHub REST API
-
-### 개발 환경
-
-- Visual Studio Code
-- Live Server
-- GitHub
-- GitHub Pages
-
 ---
 
-## 4. 주요 구현 내용
+## 7. 주요 구현 내용
 
 ### 1. Semantic HTML
 
@@ -109,6 +100,23 @@ B4-1/
 - Projects
 - Contact
 - Footer
+
+```shell
+body
+│
+├── header                  ; 사이트 상단 영역
+│   └── nav                 ; 사이트 내 이동 메뉴
+│
+├── main                    ; 페이지의 핵심 콘텐츠
+│   ├── section#hero        ; 독립적인 영역 (페이지에서 처음 보이는 영역)
+│   ├── section#about       ; 독립적인 영역
+│   ├── section#skills      ; 독립적인 영역
+│   ├── section#projects    ; 독립적인 영역
+│   └── section#contact     ; 독립적인 영역
+│   
+└── footer                  ; 저작권, SNS 등의 하단 정보
+```
+
 
 ---
 
@@ -214,7 +222,7 @@ Contact 폼에서 다음 항목을 검증합니다.
 
 ---
 
-## 5. GitHub API
+## 8. GitHub API
 
 GitHub REST API를 사용하여 사용자의 Repository 목록을 가져옵니다.
 
@@ -252,7 +260,7 @@ API 상태에 따라 다음과 같이 UI를 변경합니다.
     ```
 
 
-## 6. 상태 관리 흐름
+## 9. 상태 관리 흐름
 
 사용자 이벤트 → 상태 변경 → 화면 업데이트
 

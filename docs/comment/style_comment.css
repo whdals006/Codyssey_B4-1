@@ -1,0 +1,762 @@
+/* =========================
+   CSS Variables (전역 변수 설정)
+========================= */
+
+:root {
+    /* 변수 이름: 값; */
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+
+    --color-background: #ffffff;
+    --color-background-secondary: #f8fafc;
+
+    --color-text: #1e293b;
+    --color-text-secondary: #64748b;
+
+    --color-border: #e2e8f0;
+
+    --color-white: #ffffff;
+
+    --max-width: 1200px;
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+
+    --border-radius: 0.75rem;
+
+    --transition: 0.3s ease;
+}
+
+
+/* =========================
+   Reset (기초 스타일 초기화 및 설정)
+========================= */
+
+/* 1. 모든 요소(*), 초기화 */
+* {
+    margin: 0;                                  /* 브라우저가 기본으로 가진 바깥 여백 제거 */
+    padding: 0;                                 /* 브라우저가 기본으로 가진 안쪽 여백 제거 */
+    box-sizing: border-box;                     /* 패딩(padding)과 테두리(border)를 포함하여 요소의 전체 너비를 계산 (레이아웃 틀어짐 방지) */
+}
+
+/* 2. HTML 전체 (최상위 문서) */
+html {
+    scroll-behavior: smooth;                    /* 페이지 내 링크(#) 이동 시 뚝 끊기지 않고 부드럽게 스크롤되도록 애니메이션 적용 */
+}
+
+/* 3. 본문 (화면에 보이는 전체 영역) */
+body {
+    font-family: Arial, sans-serif;             /* 기본 폰트를 Arial로 지정, 없으면 시스템 기본 sans-serif 사용 */
+    line-height: 1.6;                           /* 텍스트 줄 간격을 글자 크기의 1.6배로 설정 (가독성 향상) */
+    color: var(--color-text);                   /* 글자 색상을 --color-text CSS 변수 값으로 적용 */
+    background-color: var(--color-background);  /* 배경색을 --color-background CSS 변수 값으로 적용 */
+}
+
+/* 4. 링크 태그 (<a>) */
+a {
+    color: inherit;                             /* 부모 요소의 글자 색상을 그대로 물려받음 (기본 파란색 제거) */
+    text-decoration: none;                      /* 링크 밑줄 제거 */
+}
+
+/* 5. 순서 없는 목록 (<ul>) */
+ul {
+    list-style: none;                           /* 목록 항목 앞의 기본 점(bullet) 제거 */
+}
+
+/* 6. 이미지 (<img>) */
+img {
+    display: block;                             /* inline 요소 특성 때문에 이미지 하단에 생기는 미세한 빈 공간(gap) 제거 */
+    max-width: 100%;                            /* 이미지가 부모 요소의 너비보다 커지지 않도록 반응형으로 제한 */
+}
+
+/* 7. 폼 관련 입력 요소들 (<button>, <input>, <textarea>) */
+button,
+input,
+textarea {
+    font: inherit;                              /* 폼 요소가 브라우저 고유 폰트 대신, 부모 요소(body 등)의 폰트 스타일을 그대로 상속받도록 설정 */
+}
+
+
+/* =========================
+   Common (공통 레이아웃 설정)
+========================= */
+
+/* 1. section 직속 자식 div, nav, footer 요소를 선택 */
+section > div,
+nav,
+footer {
+    width: min(100% - 2rem, var(--max-width));  /* 2. 화면 크기에 맞춰 반응형으로 작동하는 너비 설정 */
+    margin: 0 auto;                             /* 3. 좌우 여백을 자동으로 채워 중앙에 배치 */
+}
+
+
+/* =========================
+   Header (상단 헤더 영역)
+========================= */
+
+header {
+    position: relative;                             /* 자식 요소(.nav-menu)의 absolute 위치 기준점을 설정 */
+
+    background-color: var(--color-background);      /* 헤더의 배경색을 변수 값으로 적용 */
+    border-bottom: 1px solid var(--color-border);   /* 헤더 하단에 구분용 실선 테두리 생성 */
+
+    transition:
+        box-shadow var(--transition);               /* 그림자(box-shadow) 변경 시 자연스럽게 애니메이션 처리 */
+}
+
+nav {
+    min-height: 4.5rem;                             /* 네비게이션 바의 최소 높이를 설정 (4.5rem = 약 72px) */
+
+    display: flex;                                  /* 로고, 메뉴 버튼 등을 한 줄로 나열하기 위해 Flexbox 적용 */
+    align-items: center;                            /* 수직 방향(위아래) 가운데 정렬 */
+    justify-content: space-between;                 /* 양 끝으로 요소를 벌려 배치 (왼쪽: 로고, 오른쪽: 메뉴버튼 등) */
+
+    gap: var(--spacing-sm);                         /* 내부에 나열된 요소들 사이의 최소 간격 설정 */
+}
+
+.logo {
+    font-size: 1.25rem;                             /* 로고 텍스트 크기 설정 (1.25rem = 약 20px) */
+    font-weight: 700;                               /* 글자 두께를 두껍게(Bold) 설정 */
+    color: var(--color-primary);                    /* 로고 색상을 메인 브랜드 컬러 변수로 적용 */
+}
+
+.nav-menu {
+    position: absolute;                             /* header를 기준으로 위치를 자유롭게 배치하기 위해 absolute 지정 */
+
+    top: 4.5rem;                                    /* header 높이(4.5rem)만큼 아래로 내려서 배치 */
+    left: 0;                                        /* 왼쪽/오른쪽을 0으로 설정하여 화면 전체 너비 채우기 */            
+    right: 0;
+
+    display: none;                                  /* 기본 상태에서는 메뉴를 화면에서 숨김 */
+    flex-direction: column;                         /* 메뉴가 열렸을 때 메뉴 항목들을 위에서 아래로(세로) 나열 */
+
+    padding: var(--spacing-md);                     /* 메뉴 드롭다운 박스 내부의 안쪽 여백 설정 */
+
+    background-color: var(--color-background);      /* 드롭다운 메뉴의 배경색 설정 */
+
+    border-bottom: 1px solid var(--color-border);   /* 드롭다운 메뉴 하단에 구분용 테두리 추가 */
+}
+
+.nav-menu a {
+    display: block;                         /* <a> 태그를 블록 요소로 변경하여 한 줄 전체를 차지하게 함 */
+
+    width: 100%;                            /* 클릭 가능한 영역을 가로 전체(100%)로 확장 */
+
+    padding: 0.5rem 0;                      /* 위아래 0.5rem의 안쪽 여백을 주어 터치/클릭하기 편하게 설정 */
+
+    color: var(--color-text-secondary);     /* 기본 메뉴 글자 색상을 보조 텍스트 컬러로 지정 */
+    font-weight: 500;                       /* 글자 두께를 중간 두께(500)로 설정 */
+
+    transition:
+        color var(--transition);            /* 마우스 호버 시 글자색 변경을 부드럽게 애니메이션 처리 */
+}
+
+.nav-menu a:hover {
+    color: var(--color-primary);            /* 마우스를 올렸을 때 글자 색상을 메인 컬러로 변경 */
+}
+
+/* active 상태 만들기 (자바스크립트로 메뉴 토글 시 동작) */
+
+.nav-menu.active {
+    display: flex;                          /* JavaScript로 .active 클래스가 붙으면 숨겨진 메뉴를 화면에 노출 */
+}
+
+
+/* =========================
+   메뉴 버튼과 테마 버튼
+========================= */
+
+/* 1. 메뉴 버튼(.menu-toggle)과 테마 버튼(.theme-toggle) 공통 스타일 */
+.menu-toggle,
+.theme-toggle {
+    border: none;                   /* 버튼 특유의 기본 외곽선 테두리 제거 */
+    background: none;               /* 버튼의 기본 회색 배경색 제거 (회색 박스 없앰) */
+    cursor: pointer;                /* 마우스를 올렸을 때 손가락 모양 커서로 변경하여 클릭 가능함을 표시 */
+}
+
+/* 2. 햄버거 메뉴 버튼 전용 스타일 */
+.menu-toggle {
+    display: block;                 /* 버튼을 블록(Block) 요소로 지정하여 영역 확보 */
+
+    border: none;                   /* (상단 공통 코드와 중복) 테두리 제거 */
+    background: none;               /* (상단 공통 코드와 중복) 배경 제거 */
+
+    font-size: 1.5rem;              /* 아이콘 또는 글자 크기를 1.5rem(약 24px)으로 크게 설정 */
+
+    cursor: pointer;                /* (상단 공통 코드와 중복) 손가락 모양 커서 적용 */
+}
+
+/* 3. 다크/라이트 모드 테마 변경 버튼 전용 스타일 */
+.theme-toggle {
+    font-size: 1.25rem;             /* 아이콘 또는 글자 크기를 1.25rem(약 20px)으로 설정 */
+}
+
+
+/* =========================
+   Sections
+========================= */
+
+/* 1. 모든 <section> 태그 기본 스타일 */
+section {
+    padding: var(--spacing-xl) 0;                           /* 위아래에는 큰 여백(var(--spacing-xl)), 좌우에는 0의 여백 지정 */
+}
+
+/* 2. 짝수 번째 <section> 태그 스타일 지정 */
+section:nth-child(even) {
+    background-color: var(--color-background-secondary);    /* 2번째, 4번째 등 짝수 섹션만 보조 배경색을 적용하여 교차 패턴 생성 */
+}
+
+/* 3. <section> 내부의 <h2> 제목 태그 스타일 */
+section h2 {
+    margin-bottom: var(--spacing-md);                       /* 제목 아래에 지정된 크기(var(--spacing-md))만큼 바깥 여백 생성 */
+
+    font-size: 2rem;                                        /* 제목 글자 크기를 2rem(약 32px)으로 대형화 */
+    text-align: center;                                     /* 제목 텍스트를 중앙 정렬 */
+}
+
+
+/* =========================
+   Hero
+========================= */
+
+/* 1. 히어로 섹션 전체 컨테이너 (#hero) */
+#hero {
+    min-height: 80vh;                       /* 화면 높이(Viewport Height)의 최소 80%를 차지하도록 설정 */
+
+    display: flex;                          /* 내부 요소를 유연하게 배치하기 위해 Flexbox 적용 */
+    align-items: center;                    /* 수직(위아래) 방향 가운데 정렬 */
+    justify-content: center;                /* 수평(좌우) 방향 가운데 정렬 */
+
+    text-align: center;                     /* 내부의 모든 텍스트 요소를 중앙 정렬 */
+}
+
+/* 2. #hero의 바로 밑에 있는 자식 div (실제 콘텐츠가 담긴 박스) */
+#hero > div {
+    display: flex;                          /* 내부 요소들(p, h1, a 등)을 한 줄씩 관리하기 위해 Flexbox 적용 */
+    flex-direction: column;                 /* 요소들을 위에서 아래로(세로 방향) 나열 */
+    align-items: center;                    /* 세로로 나열된 요소들을 가운데로 정렬 */
+    gap: var(--spacing-sm);                 /* 내부 요소들 사이의 수직 간격 설정 */
+}
+
+/* 3. 히어로 섹션의 메인 제목 (h1) */
+#hero h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);    /* 반응형 폰트 크기 지정 (최소 2.5rem, 화면 너비의 8%, 최대 5rem 사이로 자동 조절) */
+    line-height: 1.1;                       /* 제목의 줄 간격을 좁게(1.1배) 설정하여 텍스트 집중도 향상 */
+}
+
+/* 4. #hero 내부의 첫 번째 <p> 태그 (보통 서브 타이틀/서두 텍스트) */
+#hero p:first-child {
+    color: var(--color-primary);            /* 글자 색상을 메인 포인트 컬러로 강조 */
+    font-weight: 700;                       /* 글자 두께를 두껍게(Bold) 설정 */
+}
+
+/* 5. #hero 내부의 두 번째 <p> 태그 (보통 상세 설명문) */
+#hero p:nth-of-type(2) {
+    color: var(--color-text-secondary);     /* 글자 색상을 보조 텍스트 컬러로 설정하여 차분한 느낌 부여 */
+}
+
+/* 6. 히어로 섹션 내부의 버튼형 링크 (<a>) */
+#hero a {
+
+    margin: 0.25rem;
+
+    display: inline-block;                  /* 바깥 여백을 0.25rem으로 설정 */
+
+    margin-top: var(--spacing-sm);          /* 상단 바깥 여백을 추가 설정 (위에서 설정한 margin: 0.25rem의 상단 값을 덮어씀) */
+    padding: 0.75rem 1.25rem;               /* 버튼 내부 안쪽 여백 설정 (위아래 0.75rem, 좌우 1.25rem) */
+
+    border-radius: var(--border-radius);    /* 버튼의 모서리를 둥글게 처리 */
+
+    background-color: var(--color-primary); /* 버튼 배경색을 메인 브랜드 컬러로 채움 */
+    color: var(--color-white);              /* 버튼 글자색을 흰색으로 지정 */
+
+    transition:
+        background-color var(--transition),
+        transform var(--transition);        /* 배경색 및 위치 변형 시 부드럽게 애니메이션 적용 */
+}
+
+/* 7. 버튼에 마우스를 올렸을 때 (:hover) */
+#hero a:hover {
+    background-color: var(--color-primary-hover);   /* 호버 전용 진한 배경색으로 변경 */
+    transform: translateY(-2px);                    /* 버튼이 위로 2px 살짝 떠오르는 입체 효과 적용 */
+}
+
+
+
+/* =========================
+   About
+========================= */
+
+/* 1. #about 내부의 첫 번째 컨테이너 div */
+#about > div {
+    display: grid;                                  /* 내부 요소(제목, 이미지, 설명 글 등)를 격자(Grid) 형태로 레이아웃 배치 */
+    gap: var(--spacing-md);                         /* 그리드 아이템들 사이의 행/열 간격을 변수 값으로 지정 */
+}
+
+/* 2. #about 섹션의 <h2> 제목 */
+#about h2 {
+    grid-column: 1 / -1;                            /* 그리드의 첫 번째 그리드 라인(1)부터 마지막 라인(-1)까지 전체 열을 가로질러 차지하도록 설정 (제목이 한 줄 전체 차지) */                                               
+}
+
+/* 3. #about 섹션 내부의 프로필/소개 이미지 */
+#about img {
+    width: 100%;                                    /* 부모 요소의 너비에 맞춰 기본 가로 크기를 100%로 설정 */
+    max-width: 280px;                               /* 이미지가 너무 커지지 않도록 최대 가로 폭을 280px로 제한 */
+
+    margin: 0 auto;                                 /* 위아래 여백 0, 좌우 여백 auto로 설정하여 이미지를 중앙 정렬 */
+
+    border-radius: var(--border-radius);            /* 이미지 모서리를 부드럽게 둥글게 처리 */
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1);           /* 이미지 뒤에 부드럽고 깊이감 있는 그림자 효과 부여 (x축:0, y축:10px, 블러:30px, 투명도 10% 검은색) */
+}
+
+/* 4. #about > div 내부에 들어있는 텍스트 감싸기용 하위 div (#about div div) */
+#about div div {
+    display: flex;
+    flex-direction: column;                 /* 텍스트 요소들을 위에서 아래로(세로 방향) 나열 */
+    gap: var(--spacing-sm);                 /* 세로로 나열된 문단/요소들 사이의 수직 간격 지정 */
+}
+
+/* 5. #about 섹션 내부의 본문 문단 (<p>) */
+#about p {
+    color: var(--color-text-secondary);
+}
+
+
+/* =========================
+   Skills
+========================= */
+
+/* 1. #skills 섹션 내의 목록 태그 (<ul>) */
+#skills ul {
+    display: grid;                              /* 기술 아이템 카드들을 격자(Grid) 형태로 정렬 */
+    grid-template-columns: repeat(2, 1fr);      /* 동일한 너비(1fr)를 가지는 2개의 열(Column) 구조 생성 */
+    gap: var(--spacing-sm);                     /* 격자 아이템(카드)들 사이의 간격 설정 */
+}
+
+/* 2. #skills 섹션 내의 각 기술 아이템 카드 (<li>) */
+#skills li {
+    padding: var(--spacing-md);                 /* 카드 내부 안쪽 여백 설정 */
+
+    text-align: center;                         /* 카드 내부의 아이콘이나 텍스트를 가운데 정렬 */
+
+    background-color: var(--color-background);  /* 카드의 배경색을 테마 배경색 변수로 지정 */
+
+    border: 1px solid var(--color-border);      /* 테마 보더 색상으로 1px 두께의 외곽선 추가 */
+    border-radius: var(--border-radius);        /* 카드 모서리를 둥글게 처리 */
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05);       /* 입체감을 주는 은은한 기본 그림자 적용 */
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);           /* 위치 이동(transform)과 그림자(box-shadow) 변경을 부드럽게 애니메이션 처리 */
+}
+
+/* 3. 기술 아이템 카드에 마우스를 올려놓았을 때 (:hover) */
+#skills li:hover {
+    transform: translateY(-4px);                /* 카드를 위쪽으로 4px 살짝 떠오르게 함 */
+
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.1);       /* 떠오른 카드에 맞게 그림자를 더 크고 짙게 만들어 입체감 강조 */
+}
+
+
+/* =========================
+   Projects
+========================= */
+
+/* 1. 프로젝트 카드들을 담는 그리드 컨테이너 (.project-list) */
+.project-list {
+    display: grid;                                  /* 내부 프로젝트 카드들을 격자(Grid) 형태로 배치 */
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));       /* 화면 너비에 따라 카드가 250px 이상을 유지하며 한 줄에 자동으로 개수가 조절되는 완전 반응형 그리드 생성 */
+
+    gap: var(--spacing-md);                         /* 프로젝트 카드들 사이의 간격 설정 */
+}
+
+/* 2. 각 프로젝트 개별 카드 (.project-list article) */
+.project-list article {
+    padding: var(--spacing-md);                     /* 카드 내부의 안쪽 여백 설정 */
+
+    background-color: var(--color-background);      /* 테마 배경색 변수 적용 */
+
+    border: 1px solid var(--color-border);          /* 구분용 외곽선 추가 */
+    border-radius: var(--border-radius);            /* 카드 모서리를 둥글게 설정 */
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05);           /* 카드 뒤에 은은한 기본 그림자 적용 */
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);               /* 위치 이동(transform)과 그림자(box-shadow) 변경을 부드럽게 애니메이션 처리 */
+}
+
+/* 3. 프로젝트 카드에 마우스를 올렸을 때 (:hover) */
+.project-list article:hover {
+    transform: translateY(-5px);                    /* 카드를 위로 5px 떠오르게 설정 */
+
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.1);           /* 떠오른 상태에 맞추어 그림자를 더 크고 깊게 강조 */        
+}
+
+/* 4. 프로젝트 카드 내의 제목 (h3) */
+.project-list h3 {
+    margin-bottom: var(--spacing-sm);               /* 제목 아래 본문과의 간격을 띄우기 위해 하단 여백 설정 */
+}
+
+/* 5. 프로젝트 카드 내의 설명글 (p) */
+.project-list p {
+    color: var(--color-text-secondary);             /* 설명글 색상을 차분한 보조 텍스트 컬러 변수로 적용 */
+}
+
+/* 6. 프로젝트 로딩/에러 상태 안내 문구 (.project-status) */
+.project-status {
+    margin-top: var(--spacing-md);                  /* 상단 프로젝트 목록과의 간격을 띄우기 위해 위쪽 여백 설정 */
+
+    text-align: center;                             /* 안내 문구를 가운데 정렬 */
+
+    color: var(--color-text-secondary);             /* 보조 텍스트 컬러 적용 */
+}
+
+/* 7. 데이터 불러오기 실패 시 노출되는 다시 시도 버튼 (.retry-button) */
+.retry-button {
+    display: none;                                  /* 기본 상태에서는 버튼을 화면에서 숨김 (자바스크립트 에러 발생 시에만 노출) */
+
+    margin: var(--spacing-sm) auto 0;               /* 위쪽 여백 var(--spacing-sm), 좌우 auto로 가운데 정렬, 아래쪽 여백 0 설정 */
+}
+
+
+/* =========================
+   Contact
+========================= */
+
+/* 1. #contact 내부의 <form> 양식 전체 컨테이너 */
+#contact form {
+    max-width: 700px;               /* 폼의 최대 가로 폭을 700px로 제한하여 너무 넓어지지 않게 유지 */
+    margin: 0 auto;                 /* 좌우 여백을 auto로 설정하여 폼 전체를 화면 중앙에 정렬 */
+
+    display: flex;                  /* 폼 내부 요소(입력 필드 그룹들)를 세로로 나열하기 위해 Flexbox 적용 */
+    flex-direction: column;         /* 요소들을 위에서 아래로(세로 방향) 배치 */
+    gap: var(--spacing-md);         /* 입력 그룹 간의 수직 간격 설정 */
+}
+
+/* 2. 라벨과 입력창을 하나로 묶어주는 각 입력 그룹 (form > div) */
+#contact form > div {
+    display: flex;                  /* 라벨과 입력창을 정렬하기 위해 Flexbox 적용 */
+    flex-direction: column;         /* 라벨 아래에 입력창이 오도록 세로 방향으로 나열 */
+    gap: 0.5rem;                    /* 라벨과 입력창 사이의 간격(0.5rem = 약 8px) 설정 */
+}
+
+/* 3. 입력 항목의 이름/제목을 나타내는 라벨 (<label>) */
+#contact label {
+    font-weight: 600;               /* 라벨 글자를 반두껍게(Semi-bold) 설정하여 가독성 향상 */
+}
+
+/* 4. 단일 행 입력창(<input>)과 다중 행 입력창(<textarea>) 공통 스타일 */
+#contact input,
+#contact textarea {
+    width: 100%;                                    /* 부모 감싸는 영역의 가로 폭을 100% 채움 */
+
+    padding: 0.75rem 1rem;                          /* 입력창 안쪽 여백 설정 (위아래 0.75rem, 좌우 1rem) */
+
+    border: 1px solid var(--color-border);          /* 기본 테두리 두께 및 색상 적용 */
+    border-radius: 0.5rem;                          /* 입력창 모서리를 둥글게(8px) 처리 */
+
+    background-color: var(--color-background);      /* 테마 배경색 적용 */
+    color: var(--color-text);                       /* 입력되는 텍스트의 색상 설정 */
+
+    outline: none;                                  /* 브라우저 기본 포커스 외곽선(검은색/파란색 테두리) 제거 */
+
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);               /* 테두리 색상 및 아웃라인 그림자 변경을 부드럽게 애니메이션 처리 */
+}
+
+/* 5. 입력창에 마우스 커서가 들어가 활성화되었을 때 (:focus) */
+#contact input:focus,
+#contact textarea:focus {
+    border-color: var(--color-primary);             /* 포커스 시 테두리 색상을 메인 브랜드 컬러로 변경 */
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.15);        /* 입력창 주변에 은은한 메인 컬러 은광(Ring) 그림자 효과 생성 */
+}
+
+/* 6. 다중 행 입력창 (<textarea>) 전용 설정 */
+#contact textarea {
+    resize: vertical;                               /* 사용자가 입력창 크기를 조절할 때 가로 깨짐을 방지하고 '세로 방향'으로만 조절 가능하게 제한 */
+}
+
+/* 7. 폼 전송 버튼 (#contact form button) */
+#contact form button {
+    align-self: flex-end;                           /* Flexbox 부모 속성을 무시하고 버튼 혼자 오른쪽 끝으로 정렬 */
+
+    padding: 0.75rem 1.5rem;                        /* 버튼 안쪽 여백 설정 (위아래 0.75rem, 좌우 1.5rem) */
+
+    border: none;                                   /* 버튼 기본 테두리 제거 */               
+    border-radius: var(--border-radius);            /* 버튼 모서리를 둥글게 설정 */
+
+    background-color: var(--color-primary);         /* 메인 브랜드 색상으로 버튼 배경 채움 */
+    color: var(--color-white);                      /* 버튼 글자색을 흰색으로 설정 */
+
+    cursor: pointer;                                /* 마우스 올렸을 때 손가락 모양 커서로 변경 */
+
+    transition:
+        background-color var(--transition),
+        transform var(--transition);                /* 배경색 및 위치 이동 애니메이션 처리 */
+}
+
+/* 8. 폼 전송 버튼에 마우스를 올렸을 때 (:hover) */
+#contact form button:hover {
+    background-color: var(--color-primary-hover);   /* 진한 메인 브랜드 컬러로 배경색 변경 */
+    transform: translateY(-2px);                    /* 버튼을 위로 2px 살짝 떠오르게 만들어 클릭 가능함 강조 */
+}
+
+/* 9. 입력 오류 메시지 안내 영역 (.error-message) */
+.error-message {
+    min-height: 1.5rem;                             /* 메시지가 없을 때도 높이를 1.5rem 확보하여 에러 발생 시 레이아웃 덜컹거림 방지 */
+    color: #dc2626;                               /* 에러 메시지 텍스트를 빨간색으로 표시 */
+}
+
+/* 10. 폼 전송 성공 메시지 안내 영역 (.form-success) */
+.form-success {
+    min-height: 1.5rem;                             /* 메시지가 들어설 최소 높이를 미리 확보 */
+    color: #16a34a;                               /* 성공 메시지 텍스트를 초록색으로 표시 */
+}
+
+/* 11. 유효성 검사 실패 시 입력창 스타일 (.invalid) */
+#contact input.invalid,
+#contact textarea.invalid {
+    border-color: #dc2626;                        /* 잘못 입력된 input/textarea 테두리를 빨간색으로 변경하여 사용자에게 알림 */
+}
+
+
+
+/* =========================
+   Footer
+========================= */
+
+/* 1. 푸터 전체 영역 (<footer>) */
+footer {
+    padding-top: var(--spacing-md);             /* 상단 안쪽 여백을 변수 크기만큼 지정 */
+    padding-bottom: var(--spacing-md);          /* 하단 안쪽 여백을 변수 크기만큼 지정 */
+
+    display: flex;                              /* 내부 요소를 유연하게 배치하기 위해 Flexbox 적용 */
+    flex-direction: column;                     /* 저작권 문구, 소셜 링크 등을 위에서 아래로(세로 방향) 나열 */
+    align-items: center;                        /* 세로로 나열된 요소들을 수평(가운데) 정렬 */
+    gap: var(--spacing-sm);                     /* 세로 요소들 사이의 수직 간격 설정 */
+
+    text-align: center;                         /* 내부 텍스트를 중앙 정렬 */
+}
+
+/* 2. 푸터 내부의 저작권 및 안내 문구 (<p>) */
+footer p {
+    color: var(--color-text-secondary);         /* 텍스트 색상을 차분한 보조 컬러 변수로 적용 */
+}
+
+/* 3. 소셜 미디어/외부 링크들을 감싸는 박스 (footer > div) */
+footer div {
+    display: flex;                              /* 링크 아이콘/텍스트들을 가로 한 줄로 나열하기 위해 Flexbox 적용 */
+    gap: var(--spacing-md);                     /* 가로로 나열된 링크들 사이의 간격 설정 */
+}
+
+/* 4. 푸터 내의 외부 링크 태그 (<a>) */
+footer a {
+    color: var(--color-text-secondary);         /* 링크의 기본 글자 색상을 보조 텍스트 컬러로 지정 */
+
+    transition:
+        color var(--transition);                /* 마우스 호버 시 글자색 변경을 부드럽게 애니메이션 처리 */
+}
+
+/* 5. 푸터 링크에 마우스를 올렸을 때 (:hover) */
+footer a:hover {
+    color: var(--color-primary);                /* 글자 색상을 메인 브랜드 컬러로 변경하여 활성화됨을 표시 */
+}
+
+
+
+/* =========================
+  768px 태블릿 스타일
+========================= */
+
+/* 1. 화면 폭(Viewport Width)이 768px 이상일 때 적용되는 미디어 쿼리 시작 */
+@media (min-width: 768px) {
+
+    /* 2. 모바일용 햄버거 메뉴 버튼 (.menu-toggle) */
+    .menu-toggle {
+        display: none;                      /* 데스크톱 화면에서는 모바일 메뉴 버튼을 숨김 */
+    }
+
+    /* 3. 네비게이션 메뉴 (.nav-menu) 드롭다운을 상단 바 스타일로 복원 */
+    .nav-menu {
+        position: static;                   /* 모바일의 absolute 띄움 상태를 해제하고 기본 흐름 위치로 복귀 */
+
+        display: flex;                      /* 메뉴 항목 배치를 위해 Flexbox 재적용 */
+        flex-direction: row;                /* 메뉴 항목들을 세로에서 가로 방향으로 나열 */
+
+        width: auto;                        /* 가로 폭 100% 지우고 컨텐츠 크기에 맞게 자동 조절 */
+
+        padding: 0;                         /* 모바일 드롭다운용 안쪽 여백 제거 */
+
+        background-color: transparent;      /* 모바일 드롭다운 배경색을 투명하게 전환 */
+
+        border-bottom: none;                /* 모바일 드롭다운 하단 테두리 선 제거 */
+
+        gap: var(--spacing-md);             /* 가로로 나열된 메뉴 항목 사이의 간격 지정 */
+    }
+
+    /* 4. 네비게이션 링크 태그 (.nav-menu a) */
+    .nav-menu a {
+        width: auto;                        /* 한 줄 전체 차지(100%) 속성을 해제하고 글자 크기에 맞춤 */
+        padding: 0;                         /* 모바일용 굵은 안쪽 여백을 제거 */
+    }
+
+    /* 5. About 섹션 레이아웃 (#about > div) */
+    #about > div {
+        grid-template-columns: 280px 1fr;   /* 왼쪽 프로필 이미지(280px), 오른쪽 소개글(남은 공간 전체 1fr)로 2열 배치 */
+        align-items: center;                /* 이미지와 소개글을 수직(위아래) 가운데 정렬 */
+    }
+
+    /* 6. About 섹션의 <h2> 제목 */
+    #about h2 {
+        grid-column: 1 / -1;                /* 2열 구조로 변경되어도 제목은 여전히 1열부터 끝열까지 한 줄 전체를 차지 */
+    }
+
+    /* 7. Skills 섹션의 기술 목록 (#skills ul) */
+    #skills ul {
+        grid-template-columns:
+            repeat(3, 1fr);                 /* 모바일의 2열 구조에서 데스크톱에 맞게 3열 균등 구조로 확장 */
+    }
+}
+
+
+
+/* =========================
+   1024px 데스크톱 스타일
+========================= */
+
+/* 1. 화면 폭(Viewport Width)이 1024px 이상(대형 데스크톱)일 때 적용되는 미디어 쿼리 시작 */
+@media (min-width: 1024px) {
+
+    /* 2. 대형 화면에 맞춘 모든 <section> 태그 상하 여백 재정의 */
+    section {
+        padding: var(--spacing-xl) 0;       /* 섹션 위아래 안쪽 여백을 가장 큰 변수 값(var(--spacing-xl))으로 일정하게 유지 */
+    }
+
+    /* 3. 대형 화면에서의 히어로(Hero) 섹션 높이 확대 */
+    #hero {
+        min-height: 85vh;                   /* 화면 전체 높이(Viewport Height)의 최소 85%를 차지하도록 확대하여 웅장한 느낌 연출 */                   
+    }
+
+    /* 4. Skills 섹션의 기술 아이템 목록 (#skills ul) */
+    #skills ul {
+        grid-template-columns:
+            repeat(5, 1fr);                 /* 768px(3열)에서 1024px 이상 대형 화면에 맞춰 5열 균등 분할 레이아웃으로 확장 */
+    }
+}
+
+
+/* =========================
+   Scroll Top
+========================= */
+
+/* 1. 맨 위로 가기 버튼 (.scroll-top) 기본 스타일 */
+.scroll-top {
+    position: fixed;                            /* 브라우저 화면(Viewport)을 기준으로 위치를 고정하여 스크롤 시에도 같은 자리에 유지 */
+
+    right: 1.5rem;                              /* 화면 오른쪽에서 1.5rem 떨어진 위치에 배치 */
+    bottom: 1.5rem;                             /* 화면 아래쪽에서 1.5rem 떨어진 위치에 배치 */
+
+    width: 3rem;                                /* 버튼의 가로 너비를 3rem(약 48px)으로 설정 */
+    height: 3rem;                               /* 버튼의 세로 높이를 3rem(약 48px)으로 설정하여 정사각형 영역 확보 */
+
+    border: none;                               /* <button> 태그 고유의 기본 테두리 외곽선 제거 */
+    border-radius: 50%;                         /* 모서리를 50% 곡률로 다듬어 완벽한 동그라미(원형) 모양으로 만듦 */
+
+    background-color: var(--color-primary);     /* 버튼 배경색을 메인 브랜드 컬러 변수로 지정 */
+    color: var(--color-white);                  /* 내부 화살표/아이콘 글자색을 흰색으로 지정 */
+
+    font-size: 1.25rem;                         /* 버튼 내부 아이콘 또는 텍스트 크기를 1.25rem으로 지정 */
+
+    cursor: pointer;                            /* 마우스를 올렸을 때 손가락 모양 커서로 변경하여 클릭 가능함을 알림 */
+
+    opacity: 0;                                 /* 불투명도를 0으로 만들어 요소를 완전 투명하게 숨김 */
+    visibility: hidden;                         /* 화면에서 숨기고 마우스 클릭이나 접근성 포커스가 되지 않도록 차단 */
+
+    transform: translateY(10px);                /* 아래쪽으로 10px 이동시켜 숨겨진 초기 위치 설정 (위로 떠오르는 등장 효과용) */
+
+    transition:
+        opacity var(--transition),
+        visibility var(--transition),
+        transform var(--transition);            /* 투명도, 노출 여부, 위치 변화 시 부드러운 전환 효과(애니메이션) 적용 */
+}
+/* 2. 스크롤이 일정량 내려갔을 때 자바스크립트로 활성화되는 클래스 (.scroll-top.visible) */
+.scroll-top.visible {
+    opacity: 1;                                 /* 불투명도를 1로 만들어 버튼을 선명하게 노출 */
+    visibility: visible;                        /* 요소를 상호작용 가능하도록 화면에 완전히 활성화 */
+
+    transform: translateY(0);                   /* 원래 위치(원래 y축 0)로 돌아오며 아래에서 위로 살짝 떠오르는 연출 완료 */
+}
+
+/* 3. 버튼에 마우스를 올렸을 때 (:hover) */
+.scroll-top:hover {
+    background-color: var(--color-primary-hover);   /* 호버 전용 진한 배경색 변수로 변경하여 클릭 피드백 제공 */
+}
+
+
+/* =========================
+   Navigation 스타일 변경 CSS
+========================= */
+
+/* 1. 스크롤이 내려갔을 때 자바스크립트에 의해 <header>에 .scrolled 클래스가 붙는 경우 */
+header.scrolled {
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);         /* 헤더 아래쪽에 은은한 그림자를 추가하여 스크롤 시 본문 콘텐츠와 헤더 영역을 시각적으로 명확히 분리 */
+}
+
+
+/* =========================
+   다크 모드 테마 변수 재정의
+========================= */
+
+/* 1. 최상위 요소(html 등)에 data-theme="dark" 속성이 부여되었을 때 적용되는 CSS 변수 재정의 */
+[data-theme="dark"] {
+    --color-primary: #60a5fa;
+    --color-primary-hover: #3b82f6;
+
+    --color-background: #111827;
+    --color-background-secondary: #1f2937; /* 카드나 세컨더리 영역 배경색 */
+
+    --color-text: #f9fafb;
+    --color-text-secondary: #d1d5db;
+
+    --color-border: #374151; /* 어두운 배경에 맞는 테두리 색상 */
+}
+
+
+/* =========================
+   Scroll Animation
+========================= */
+
+/* 1. 스크롤 애니메이션을 적용할 요소 (.animate-on-scroll)의 기본(숨김) 상태 */
+.animate-on-scroll {
+    opacity: 0;                         /* 화면에 나타나기 전까지 불투명도를 0으로 만들어 요소를 숨김 */
+
+    transform: translateY(30px);        /* 요소의 원래 위치보다 아래쪽으로 30px 내려놓음 (위로 올라오며 나타나는 효과 준비) */
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;            /* 불투명도와 위치 변화가 0.6초 동안 부드럽고 자연스럽게(ease) 전환되도록 설정 */
+}
+
+/* 2. 요소를 화면에 노출시킬 때 자바스크립트로 추가되는 클래스 (.animate-on-scroll.visible) */
+.animate-on-scroll.visible {
+    opacity: 1;                         /* 불투명도를 1로 변경하여 요소를 선명하게 노출 */
+
+    transform: translateY(0);           /* 아래로 내려가 있던 30px 위치를 원래 위치(0)로 되돌려 위로 떠오르는 등장 효과 완성 */
+}

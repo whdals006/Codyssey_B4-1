@@ -852,7 +852,7 @@ CSS는 박스의 크기, 위치, 속성(색, 배경, 테두리 모양 등)을 �
         </body>
         ```
 
-* `felx-direction` 속성
+* `flex-direction` 속성
 
     * flex-direction 속성은 flexbox 내 요소를 배치할 때 사용할 주축 및 방향을 지정한다.
 
@@ -1448,12 +1448,12 @@ CSS는 박스의 크기, 위치, 속성(색, 배경, 테두리 모양 등)을 �
 * 이벤트 핸들러 등록하는 방법
 
     ```js
-    const target = document.querySelector("...")
+    const target = document.querySelector("선택자")
 
-    // 1. 이벤트 핸들러 속성을 이용한 방식
+    // 방법1. 이벤트 핸들러 속성을 이용한 방식
     target.onclick = function(){}
 
-    // 2. addEventListener 를 이용한 방식
+    // 방법2. addEventListener 를 이용한 방식
     target.addEventListener('click', function(){})
     ```
 
@@ -1707,6 +1707,64 @@ CSS는 박스의 크기, 위치, 속성(색, 배경, 테두리 모양 등)을 �
     // LocalStorage에 저장된 모든 데이터 삭제
     localStorage.clear()
     ```
+
+
+### 비동기 : ① 콜백(callback) 함수
+
+* `동기` (Synchronous) : 코드가 적힌 순서대로 작업을 실행하는 방식
+* `비동기` (Asynchronous) : 어떤 작업을 요청한 뒤, 그 작업이 끝날 때까지 기다리지 않고 곧바로 다음 작업을 실행하는 방식
+* `콜백함수` (Callback Function) : 다른 함수의 인자로 넘겨져서, 특정 작업이 끝난 후 나중에 호출되는 함수
+
+### 비동기 : ② promise
+
+* `promise` : 비동기 처리에 사용되는 '미래의 완료 또는 실패와 그 결과값'을 나타내는 객체
+    * states
+        * pending (대기)
+        * fulfilled (성공)
+        * rejected (실패)
+    * `producer`(생산자) : 비동기 작업을 직접 수행하고 결과를 만들어내는 주체
+
+        ```js
+        const promise = new Promise(resolve, reject) ==> {
+            // 비동기적으로 수행할 코드
+            console.log('doing something...');
+            setTimeout(() => {
+                resolve('codessey');
+                //reject(new Error('no network;));
+            }, 2000);
+        }
+        ```        
+
+    * `consumer`(소비자) : 그 결과를 전달받아 사용하는 주체
+
+        ```js
+        promise
+            .then(value => {
+                console.log(value);
+            })
+
+            .catch(error => {
+                console.log(error);
+            })
+
+            .fianlly(() => {
+                console.log('finally')
+            });
+        ```
+
+### 비동기 : ③ async / await
+
+promise를 기반으로 비동기 코드를 동기 코드처럼 직관적으로 작성할 수 있게 해주는 문법
+
+1. `async`
+
+    * 함수 앞에 붙이는 키워드
+    * asyn가 붙은 함수는 언제나 promise를 반환한다.
+
+2. `await`
+
+    * aysnc 함수 내부에서만 사용할 수 있는 키워드
+    * promise 앞에 붙이면, 해당 promise가 처리(fullfilled 또는 rejected)될 때까지 함수의 실행을 일시 정지하고 기다린다
 
 
 
